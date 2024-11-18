@@ -16,12 +16,14 @@ add_executable(SimulatorProject src/main.cpp
             src/UniformMesh.cpp
             src/Variable.cpp  
             src/Jacobi.cpp  
+            src/GaussSeidel.cpp
             include/Equation.h 
             include/Problem.h
             include/IMesh.h
             include/UniformMesh.h
             include/Variable.h
             include/Jacobi.h
+            include/GaussSeidel.h
             )
 
 
@@ -48,7 +50,8 @@ enable_testing()
 add_executable(test_Problem tests/test_Problem.cpp 
                src/Problem.cpp src/Equation.cpp
                 src/UniformMesh.cpp src/Variable.cpp
-                src/Jacobi.cpp  )
+                src/Jacobi.cpp 
+                src/GaussSeidel.cpp )
 add_executable(test_Equation tests/test_Equation.cpp src/Equation.cpp src/UniformMesh.cpp src/Variable.cpp)
 
 

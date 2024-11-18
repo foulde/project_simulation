@@ -6,6 +6,8 @@
 #include "../include/IMesh.h"
 #include "../include/Variable.h"
 #include "../include/Jacobi.h"
+#include "../include/GaussSeidel.h"
+
 
 
 

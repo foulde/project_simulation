@@ -2,15 +2,17 @@
 #define PROBLEM_H
 
 #include <vector>
+#include <string>
 #include"Equation.h"
 #include"IMesh.h"
 #include"Variable.h"
 
 
-class Problem{
+
+struct Problem{
 
 
-public: 
+// public: 
 
 // Problem(Equation eq , IMesh* mshptr /*we define a mesh pointer that will be called by the compute */ );
 // Problem(const Equation& eq, IMesh* mshptr); // Constructor
@@ -24,6 +26,8 @@ Problem(const Equation& eq, IMesh* mesh_ptr) : equation_(eq), mesh_ptr_(mesh_ptr
     // std::vector<double> solve(Equation eq); 
     // std::vector<double> solve( int nb_iter) const; 
     void solve( int nb_iter) const; 
+    void solve(int nb_iter , std::string method) const; 
+
     bool has_converged( const Variable &u_k ,const Variable &u_kp1 )const; /*te parameter are const as 
                                                                             we do not modify them*/
     

@@ -195,6 +195,33 @@ src/Equation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/Equation.cpp.s
 .PHONY : src/Equation.cpp.s
 
+src/GaussSeidel.o: src/GaussSeidel.cpp.o
+.PHONY : src/GaussSeidel.o
+
+# target to build an object file
+src/GaussSeidel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.o
+.PHONY : src/GaussSeidel.cpp.o
+
+src/GaussSeidel.i: src/GaussSeidel.cpp.i
+.PHONY : src/GaussSeidel.i
+
+# target to preprocess a source file
+src/GaussSeidel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.i
+.PHONY : src/GaussSeidel.cpp.i
+
+src/GaussSeidel.s: src/GaussSeidel.cpp.s
+.PHONY : src/GaussSeidel.s
+
+# target to generate assembly for a file
+src/GaussSeidel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.s
+.PHONY : src/GaussSeidel.cpp.s
+
 src/Jacobi.o: src/Jacobi.cpp.o
 .PHONY : src/Jacobi.o
 
@@ -396,6 +423,9 @@ help:
 	@echo "... src/Equation.o"
 	@echo "... src/Equation.i"
 	@echo "... src/Equation.s"
+	@echo "... src/GaussSeidel.o"
+	@echo "... src/GaussSeidel.i"
+	@echo "... src/GaussSeidel.s"
 	@echo "... src/Jacobi.o"
 	@echo "... src/Jacobi.i"
 	@echo "... src/Jacobi.s"

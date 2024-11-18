@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_Problem.dir/src/Equation.cpp.o"
   "CMakeFiles/test_Problem.dir/src/Equation.cpp.o.d"
+  "CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.o"
+  "CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.o.d"
   "CMakeFiles/test_Problem.dir/src/Jacobi.cpp.o"
   "CMakeFiles/test_Problem.dir/src/Jacobi.cpp.o.d"
   "CMakeFiles/test_Problem.dir/src/Problem.cpp.o"

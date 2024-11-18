@@ -36,7 +36,9 @@ int main(){
     // Problem(const Equation& eq, IMesh* mesh_ptr) : equation_(eq), mesh_ptr_(mesh_ptr) {}
     Problem p1(e, &u); 
     // std::vector<double> toto = p1.solve(10); 
-    p1.solve(10); 
+    // p1.solve(1000); 
+    // p1.solve(1000 , "Jacobi"); 
+    p1.solve(1000 , "GaussSeidel"); 
 
 
 

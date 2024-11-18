@@ -178,4 +178,5 @@ CMakeFiles/test_Problem.dir/src/Problem.cpp.o: \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Equation.h \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Variable.h \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Jacobi.h \
- /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/UniformMesh.h
+ /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/UniformMesh.h \
+ /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/GaussSeidel.h

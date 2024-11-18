@@ -1,9 +1,13 @@
 #include <iostream>
 #include <algorithm>
+#include <string>
+
 #include "../include/Problem.h"
 #include "../include/Equation.h"
 #include "../include/Variable.h"
 #include "../include/Jacobi.h"
+#include "../include/GaussSeidel.h"
+
 
 
 #define EPSILON 1e-5
@@ -14,7 +18,70 @@
 
 // std::vector<double> Problem::solve(const Equation& eq , int nb_iter) const{
 // std::vector<double> Problem::solve(int nb_iter) const{
-void Problem::solve(int nb_iter) const{
+
+
+
+
+
+void Problem::solve(int nb_iter ) const{
+    
+    Variable u_k(mesh_ptr_); 
+    Variable u_kp1(mesh_ptr_); 
+        
+    std::cout<<"--- Initial condition computation ---\n";
+    
+    double T1 = 30; 
+    double T2 = 15; 
+
+/*FUNCTION FOR UNIFORM DISTRIBUTION*/
+    std::function<double(double)>  lambda_UNIFORM = [T1,T2](double x) {return (T1+T2/2);}; 
+
+/*FUNCTION FOR 2 PLATE INITIAL CONDITION */
+
+    std::function<double(double)>  lambda = [this,T1,T2](double x) {
+        if (x<=(mesh_ptr_->x_max_ +mesh_ptr_->x_min_)/2)return (T1);
+        else return T2; };
+
+
+    // std::function<double(double)>  lambda = [T1,T2](double x) {return (T1+T2/2);};
+    // std::funct   ion<double(double)> = [](double T1 ,double T2  ) {return (T1 +T2)/2;};
+    ///////////////////////////////////
+
+/*UNIFORM CHOICE */
+    // equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda_UNIFORM );
+
+    
+/*2 PLATE CHOICE */
+    equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
+    /*we also intialize u_kp1 for method like GaussSeidel  */
+    equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
+
+
+    for( int k =1 ; k <=nb_iter  ; k++){
+        // std::cout<<"--- Iterative methode iteration : "<<k<<" ---\n";
+        // std::cout<<"--- Boundary condition computation ---\n";
+        equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+        // equation_.compute(mesh_ptr_,u_k, u_kp1);
+        equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
+        if (has_converged(u_k, u_kp1)){
+            std::cout<<"we have converged at the iteration "<<k <<"\n"; 
+            break;
+        }
+        u_k = u_kp1;
+
+        // solution  = eq.compute(mesh_ptr); 
+        // solution  = equation_.compute(mesh_ptr_); 
+        // compute 
+    }
+}
+
+
+
+
+
+
+
+void Problem::solve(int nb_iter , std::string method) const{
     
     // nbiter = mesh_ptr_.nb
 
@@ -63,6 +130,8 @@ void Problem::solve(int nb_iter) const{
     // equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda_UNIFORM );
 /*2 PLATE CHOICE */
     equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
+    /*we also intialize u_kp1 for method like GaussSeidel  */
+    equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
 
 
     for( int k =1 ; k <=nb_iter  ; k++){
@@ -72,10 +141,13 @@ void Problem::solve(int nb_iter) const{
         equation_.compute_boundary_conditions(u_k,mesh_ptr_);
         
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
-        equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
+        if (method == "Jacobi") {equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);}
+        else if (method =="GaussSeidel"){equation_.compute_for_solver<GaussSeidel>(mesh_ptr_,u_k, u_kp1);}
+        else{std::cout<<"you must use Jacobi or GaussSeidel \n";  break;}
+        
 
         if (has_converged(u_k, u_kp1)){
-            std::cout<<"we have converged \n"; 
+            std::cout<<"we have converged at the iteration "<<k <<"\n"; 
             break;
 
         }
@@ -86,7 +158,7 @@ void Problem::solve(int nb_iter) const{
         // compute 
 
     }
-    // return solution;
+
 
 
 }

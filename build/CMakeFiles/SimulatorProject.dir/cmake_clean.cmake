@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SimulatorProject.dir/src/Equation.cpp.o"
   "CMakeFiles/SimulatorProject.dir/src/Equation.cpp.o.d"
+  "CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.o"
+  "CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.o.d"
   "CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.o"
   "CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.o.d"
   "CMakeFiles/SimulatorProject.dir/src/Problem.cpp.o"

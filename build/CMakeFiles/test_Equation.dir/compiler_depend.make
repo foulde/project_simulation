@@ -214,7 +214,10 @@ CMakeFiles/test_Equation.dir/src/Equation.cpp.o: ../src/Equation.cpp \
   ../include/Variable.h \
   ../include/UniformMesh.h \
   ../include/IMesh.h \
-  ../include/Variable.h
+  ../include/Variable.h \
+  ../include/Jacobi.h \
+  ../include/UniformMesh.h \
+  ../include/GaussSeidel.h
 
 CMakeFiles/test_Equation.dir/src/UniformMesh.cpp.o: ../src/UniformMesh.cpp \
   /usr/include/stdc-predef.h \
@@ -857,6 +860,8 @@ CMakeFiles/test_Equation.dir/tests/test_Equation.cpp.o: ../tests/test_Equation.c
 
 ../src/UniformMesh.cpp:
 
+../include/GaussSeidel.h:
+
 /usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/c++/11/bits/refwrap.h:
@@ -1216,6 +1221,8 @@ CMakeFiles/test_Equation.dir/tests/test_Equation.cpp.o: ../tests/test_Equation.c
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/pthread.h:
+
+../include/Jacobi.h:
 
 /usr/include/sched.h:
 
