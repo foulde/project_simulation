@@ -1,9 +1,11 @@
 #ifndef PROBLEM_H
 #define PROBLEM_H
 
-#include"Equation.h"
-
 #include <vector>
+#include"Equation.h"
+#include"IMesh.h"
+#include"Variable.h"
+
 
 class Problem{
 
@@ -15,10 +17,15 @@ public:
 public:
 Problem(const Equation& eq, IMesh* mesh_ptr) : equation_(eq), mesh_ptr_(mesh_ptr) {}
 
-~Problem();
+// ~Problem();
+// ~Problem() { delete mesh_ptr_; }
 
-    // std::vector<float> solve(Equation eq); 
-    std::vector<float> solve(const Equation& eq , int nb_iter) const; 
+
+    // std::vector<double> solve(Equation eq); 
+    // std::vector<double> solve( int nb_iter) const; 
+    void solve( int nb_iter) const; 
+    bool has_converged( const Variable &u_k ,const Variable &u_kp1 )const; /*te parameter are const as 
+                                                                            we do not modify them*/
     
 
 

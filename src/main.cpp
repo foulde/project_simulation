@@ -1,8 +1,11 @@
 #include<iostream>
 // #include "Equation.h"
+#include<vector>
 #include "../include/Equation.h"
+#include "../include/UniformMesh.h"
+#include "../include/Problem.h"
+// #include "../include/IMesh.h"
 
-#include "Problem.h"
 
 
 int main(){
@@ -21,9 +24,16 @@ int main(){
 // };
 
 
+    // Equation e ;
+    // UniformMesh u(0 ,5 , 10); 
+    // u.print(); 
+    // std::cout << "tu es dans le main" << "\n";
+
     Equation e ;
+
     UniformMesh u(0 ,5 , 10); 
-    u.print(); 
+    u.print();
+    // std::vector<float> toto = e.compute(&u) ; 
     std::cout << "tu es dans le main" << "\n";
 
     

@@ -195,6 +195,33 @@ src/Equation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/Equation.cpp.s
 .PHONY : src/Equation.cpp.s
 
+src/Jacobi.o: src/Jacobi.cpp.o
+.PHONY : src/Jacobi.o
+
+# target to build an object file
+src/Jacobi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.o
+.PHONY : src/Jacobi.cpp.o
+
+src/Jacobi.i: src/Jacobi.cpp.i
+.PHONY : src/Jacobi.i
+
+# target to preprocess a source file
+src/Jacobi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.i
+.PHONY : src/Jacobi.cpp.i
+
+src/Jacobi.s: src/Jacobi.cpp.s
+.PHONY : src/Jacobi.s
+
+# target to generate assembly for a file
+src/Jacobi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.s
+.PHONY : src/Jacobi.cpp.s
+
 src/Problem.o: src/Problem.cpp.o
 .PHONY : src/Problem.o
 
@@ -369,6 +396,9 @@ help:
 	@echo "... src/Equation.o"
 	@echo "... src/Equation.i"
 	@echo "... src/Equation.s"
+	@echo "... src/Jacobi.o"
+	@echo "... src/Jacobi.i"
+	@echo "... src/Jacobi.s"
 	@echo "... src/Problem.o"
 	@echo "... src/Problem.i"
 	@echo "... src/Problem.s"

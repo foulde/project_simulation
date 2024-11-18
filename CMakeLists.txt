@@ -10,7 +10,22 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add executable target and source files
 # add_executable(SimulatorProject src/main.cpp src/Problem.cpp src/Equation.cpp)
-add_executable(SimulatorProject src/main.cpp src/Problem.cpp src/Equation.cpp include/Equation.h include/Problem.h)
+add_executable(SimulatorProject src/main.cpp
+            src/Problem.cpp 
+            src/Equation.cpp
+            src/UniformMesh.cpp
+            src/Variable.cpp  
+            src/Jacobi.cpp  
+            include/Equation.h 
+            include/Problem.h
+            include/IMesh.h
+            include/UniformMesh.h
+            include/Variable.h
+            include/Jacobi.h
+            )
+
+
+
 # add_executable(SimulatorProject
 #     src/main.cpp
 #     src/Problem.cpp
@@ -27,8 +42,15 @@ enable_testing()
 
 
 # Add tests
-add_executable(test_Problem tests/test_Problem.cpp src/Problem.cpp src/Equation.cpp)
-add_executable(test_Equation tests/test_Equation.cpp src/Equation.cpp)
+# add_executable(test_Problem tests/test_Problem.cpp src/Problem.cpp src/Equation.cpp src/UniformMesh.cpp)
+# add_executable(test_Equation tests/test_Equation.cpp src/Equation.cpp  src/UniformMesh.cpp)
+
+add_executable(test_Problem tests/test_Problem.cpp 
+               src/Problem.cpp src/Equation.cpp
+                src/UniformMesh.cpp src/Variable.cpp
+                src/Jacobi.cpp  )
+add_executable(test_Equation tests/test_Equation.cpp src/Equation.cpp src/UniformMesh.cpp src/Variable.cpp)
+
 
 # Add tests to CTest
 add_test(NAME TestProblem COMMAND test_Problem)

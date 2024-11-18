@@ -173,4 +173,6 @@ CMakeFiles/test_Equation.dir/src/Equation.cpp.o: \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Variable.h \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/UniformMesh.h \
  /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/IMesh.h \
- /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Variable.h
+ /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Variable.h \
+ /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/Jacobi.h \
+ /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/src/../include/UniformMesh.h

@@ -1,0 +1,6 @@
+faire un fichier h et cpp pour chaque classe
+Equation.h     Equation.cpp
+Problem.h      Problem.cpp
+Variable.h     Variable.cpp
+IMesh.h        IMesh.cpp
+UniformMesh.h  UniformMesh.cpp
