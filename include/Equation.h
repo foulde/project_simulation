@@ -83,6 +83,8 @@ public:
     virtual ~Equation() = default;
     // std::vector<double> compute(IMesh * mshptr ,  Variable &u_k ,Variable &u_kp1) const; /*this is the compute function that will be called in problem */
     void compute(IMesh * mshptr ,  Variable &u_k ,Variable &u_kp1) const; /*this is the compute function that will be called in problem */
+    
+    void compute_exact_solution(Variable &u_ref ,IMesh * mshptr )const;
     // compute_initial_condition
     void compute_initial_condition( Variable &Variable ,  IMesh *mshptr )const; 
     void compute_initial_condition_lambda( Variable &Variable ,  IMesh *mshptr ,std::function<double(double)> initial_condition )const; 

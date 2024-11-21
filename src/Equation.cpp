@@ -116,7 +116,7 @@ void Equation::compute_initial_condition_lambda(Variable &variable , IMesh *mshp
     // for (int i =0 ; i< (mshtpr->size())/2; i++){
     for (int i =0 ; i< mshptr->nb_point_; i++){
         // std::cout<<"this is the current value of i "<<i<<"\n"; 
-        float xi = mshptr->x_i(i) ;
+        double xi = mshptr->x_i(i) ;
         variable[i]= initial_condition(xi);/*we use the lambda function to apply a x wize treatment to the domain*/
         std::cout<<"for i= "<<i <<" x_i = "<<xi<< " Ti = "<< variable[i]<<"\n"; 
         
@@ -149,6 +149,31 @@ void Equation::compute_boundary_conditions(Variable &variable , IMesh *mshptr) c
 
 
 }
+
+
+
+
+void Equation::compute_exact_solution(Variable &u_ref ,IMesh * mshptr  )const{
+    double T1 =30; 
+    double T2 =15; 
+    u_ref[0] =30;
+    u_ref[mshptr->nb_point_-1] =15; 
+
+
+    for(int i =1; i<mshptr->nb_point_-1; i++){
+        
+        double xi = mshptr->x_i(i) ;
+        u_ref[i] =(T2-T1)*(xi) +T1; 
+        
+    }
+}
+
+
+
+
+
+
+
 
 
 // template<class Method>

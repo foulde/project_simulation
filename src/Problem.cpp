@@ -90,6 +90,8 @@ void Problem::solve(int nb_iter , std::string method) const{
     // std::vector<double> solution( mesh_ptr_->nb_point_, 0);
     Variable u_k(mesh_ptr_); 
     Variable u_kp1(mesh_ptr_); 
+    Variable u_ref(mesh_ptr_); 
+    // Variable u
     
     // std::vector<double> solution  ; 
     
@@ -132,6 +134,13 @@ void Problem::solve(int nb_iter , std::string method) const{
     equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
     /*we also intialize u_kp1 for method like GaussSeidel  */
     equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
+
+
+    /*We compute the exact solutions */
+    equation_.compute_exact_solution(u_ref,mesh_ptr_  );
+
+    
+
 
 
     for( int k =1 ; k <=nb_iter  ; k++){
