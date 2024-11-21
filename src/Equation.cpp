@@ -158,12 +158,14 @@ void Equation::compute_exact_solution(Variable &u_ref ,IMesh * mshptr  )const{
     double T2 =15; 
     u_ref[0] =30;
     u_ref[mshptr->nb_point_-1] =15; 
+    double l=std::abs(mshptr->x_max_ - mshptr->x_min_); 
 
 
     for(int i =1; i<mshptr->nb_point_-1; i++){
         
         double xi = mshptr->x_i(i) ;
-        u_ref[i] =(T2-T1)*(xi) +T1; 
+
+        u_ref[i] =((T2-T1)/l)*(xi) +T1; 
         
     }
 }

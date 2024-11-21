@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<vector>
 #include<iostream>
+#include <cmath>
 #include"IMesh.h"
 #ifndef UNIFORM_MESH_H
 #define UNIFORM_MESH_H
@@ -23,6 +24,17 @@ struct UniformMesh : public IMesh{
         nb_point_ = nb_point;
         m_dx_ = std::abs(x_max - x_min) / (nb_point - 1);
     }
+
+    UniformMesh(double x_min, double x_max, double dx) {
+        x_min_ = x_min;
+        x_max_ = x_max;
+        m_dx_ =dx; 
+
+        nb_point_ = std::floor(abs(x_max -x_min) /dx)+1;
+        // m_dx_ = std::abs(x_max - x_min) / (nb_point - 1);
+    }
+
+
 
     // Problem(const Equation& eq, IMesh* mesh_ptr) : equation_(eq), mesh_ptr_(mesh_ptr) {}
 

@@ -4,6 +4,8 @@
 #include<iostream>
 #include<vector>
 #include"IMesh.h"
+#include <string>
+
 
 
 struct Variable{
@@ -21,6 +23,8 @@ public :
     
 
     double max_element() const; 
+
+    void print(std::string name ); 
 
 
 } ;

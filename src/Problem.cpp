@@ -135,6 +135,8 @@ void Problem::solve(int nb_iter , std::string method) const{
     /*we also intialize u_kp1 for method like GaussSeidel  */
     equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
 
+    u_kp1.print("initial");
+
 
     /*We compute the exact solutions */
     equation_.compute_exact_solution(u_ref,mesh_ptr_  );
@@ -167,6 +169,12 @@ void Problem::solve(int nb_iter , std::string method) const{
         // compute 
 
     }
+
+
+    /*we now write the data to separate files */
+    u_kp1.print("ukp1"); 
+    u_ref.print("u_ref"); 
+
 
 
 

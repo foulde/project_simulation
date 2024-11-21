@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
-#include "Variable.h"
 #include <algorithm>
+#include <string>
+#include <fstream>
+#include "Variable.h"
 // #include "../include/Variable.h"
 
 
@@ -29,6 +31,35 @@ const double& Variable::operator[](int index) const {
 double Variable::max_element()const{
     return *std::max_element(u.begin() ,u.end() ); 
 }
+
+
+
+void Variable::print(std::string name ){
+    std::cout<<"this is "<<name <<"\n"; 
+    std::ofstream outputFile(name+".data");
+
+    if (outputFile.is_open()){
+
+        for (int i =0 ; i < mesh_ptr_->x_size() ;i++ ){
+             
+            std::cout<<" "<<u[i] <<" "; 
+            // std::cout<<mesh_ptr_->x_i(i)<<" "<<u[i]; 
+            outputFile<<mesh_ptr_->x_i(i)<<" " <<u[i]<<"\n"; 
+
+        }
+        outputFile.close(); 
+        std::cout << "Data was written to output.txt\n";
+    }
+
+
+    else{
+        std::cerr << "Error opening file\n";
+    }
+
+
+}
+
+
 
 // double Variable::max_element()const{
  
