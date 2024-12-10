@@ -27,8 +27,17 @@ int main(){
     // std::cout << "tu es dans le main" << "\n";
 
     Equation e ;
+    double x_min =0 ; 
+    double x_max =1 ; 
+    int nb_points = 100;
+    // double dx =0.01; 
+    // double dx =0.01; 
+    // double dx =1e-6; 
+    double dx =1e-6; 
 
-    UniformMesh u(0 ,5 , 10); 
+    // UniformMesh u(0 ,5 , 10); /*calling */
+    UniformMesh u(x_min ,x_max , nb_points); /*calling */
+    // UniformMesh u(x_min ,x_max , dx); /*calling */
     u.print();
     // std::vector<double> toto = e.compute(&u) ; 
     std::cout << "tu es dans le main" << "\n";
@@ -38,7 +47,8 @@ int main(){
     // std::vector<double> toto = p1.solve(10); 
     // p1.solve(1000); 
     // p1.solve(1000 , "Jacobi"); 
-    p1.solve(1000 , "GaussSeidel"); 
+    // p1.solve(1000 , "GaussSeidel"); 
+    p1.solve(100 , "GaussSeidel"); 
 
 
 
