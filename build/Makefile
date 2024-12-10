@@ -202,6 +202,7 @@ src/GaussSeidel.o: src/GaussSeidel.cpp.o
 src/GaussSeidel.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.o
 .PHONY : src/GaussSeidel.cpp.o
 
 src/GaussSeidel.i: src/GaussSeidel.cpp.i
@@ -211,6 +212,7 @@ src/GaussSeidel.i: src/GaussSeidel.cpp.i
 src/GaussSeidel.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.i
 .PHONY : src/GaussSeidel.cpp.i
 
 src/GaussSeidel.s: src/GaussSeidel.cpp.s
@@ -220,6 +222,7 @@ src/GaussSeidel.s: src/GaussSeidel.cpp.s
 src/GaussSeidel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/GaussSeidel.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/GaussSeidel.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.s
 .PHONY : src/GaussSeidel.cpp.s
 
 src/Jacobi.o: src/Jacobi.cpp.o
@@ -229,6 +232,7 @@ src/Jacobi.o: src/Jacobi.cpp.o
 src/Jacobi.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/Jacobi.cpp.o
 .PHONY : src/Jacobi.cpp.o
 
 src/Jacobi.i: src/Jacobi.cpp.i
@@ -238,6 +242,7 @@ src/Jacobi.i: src/Jacobi.cpp.i
 src/Jacobi.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/Jacobi.cpp.i
 .PHONY : src/Jacobi.cpp.i
 
 src/Jacobi.s: src/Jacobi.cpp.s
@@ -247,6 +252,7 @@ src/Jacobi.s: src/Jacobi.cpp.s
 src/Jacobi.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SimulatorProject.dir/build.make CMakeFiles/SimulatorProject.dir/src/Jacobi.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Problem.dir/build.make CMakeFiles/test_Problem.dir/src/Jacobi.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_Equation.dir/build.make CMakeFiles/test_Equation.dir/src/Jacobi.cpp.s
 .PHONY : src/Jacobi.cpp.s
 
 src/Problem.o: src/Problem.cpp.o

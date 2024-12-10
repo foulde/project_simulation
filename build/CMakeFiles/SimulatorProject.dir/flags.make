@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/include
 
-CXX_FLAGS = 
+CXX_FLAGS = -g
 

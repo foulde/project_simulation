@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_Equation.dir/src/Equation.cpp.o"
   "CMakeFiles/test_Equation.dir/src/Equation.cpp.o.d"
+  "CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.o"
+  "CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.o.d"
+  "CMakeFiles/test_Equation.dir/src/Jacobi.cpp.o"
+  "CMakeFiles/test_Equation.dir/src/Jacobi.cpp.o.d"
   "CMakeFiles/test_Equation.dir/src/UniformMesh.cpp.o"
   "CMakeFiles/test_Equation.dir/src/UniformMesh.cpp.o.d"
   "CMakeFiles/test_Equation.dir/src/Variable.cpp.o"

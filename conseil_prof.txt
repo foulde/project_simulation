@@ -7,6 +7,6 @@ UniformMesh.h  UniformMesh.cpp
 
 
 
-pour la notation le prof va faire make test au départ 
+pour la notation le prof va faire make ctest au départ 
 
 ajouter des test pour Imesh et UniformMesh 

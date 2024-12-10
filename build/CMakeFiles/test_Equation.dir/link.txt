@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/test_Equation.dir/tests/test_Equation.cpp.o CMakeFiles/test_Equation.dir/src/Equation.cpp.o CMakeFiles/test_Equation.dir/src/UniformMesh.cpp.o CMakeFiles/test_Equation.dir/src/Variable.cpp.o -o test_Equation 
+/usr/bin/c++ -g CMakeFiles/test_Equation.dir/tests/test_Equation.cpp.o CMakeFiles/test_Equation.dir/src/Equation.cpp.o CMakeFiles/test_Equation.dir/src/UniformMesh.cpp.o CMakeFiles/test_Equation.dir/src/Variable.cpp.o CMakeFiles/test_Equation.dir/src/Jacobi.cpp.o CMakeFiles/test_Equation.dir/src/GaussSeidel.cpp.o -o test_Equation 
