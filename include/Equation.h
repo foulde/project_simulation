@@ -101,7 +101,9 @@ public:
     template<class Method>
     void compute_for_solver(IMesh *mshptr , Variable &u_k ,Variable &u_kp1)const{
     int n_i = mshptr->nb_point_;     
+    #if DEBUG 
     std::cout <<"-- at n_i = "<< n_i <<"\n\n";
+    #endif
     Method::compute_iteration(mshptr , u_k ,u_kp1);
 }
 

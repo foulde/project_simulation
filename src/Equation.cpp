@@ -47,9 +47,9 @@ void Equation::compute(IMesh * mshptr, Variable &u_k ,Variable &u_kp1 ) const{
     // double x_min= mshptr->x_min_;
     // double x_max= mshptr->x_max_;
     // double dx   = abs(x_max-x_min)/n_i;  
-    
+#ifdef DEBUG 
     std::cout <<"-- at n_i = "<< n_i <<"\n\n";
-
+#endif 
     // double current_x_i = x_min  ;  /*to avoid error accumulation */
     // for (int i=0 ; i <=n_i ; i++){
     //     current_x_i = x_min +i*dx;   /*to avoid error accumulation */
@@ -83,12 +83,17 @@ void Equation::compute_initial_condition(Variable &variable , IMesh *mshptr)cons
 
     // for (int i =0 ; i< (mshtpr->size())/2; i++){
     for (int i =0 ; i< (mshptr->nb_point_)/2; i++){
+#ifdef DEBUG 
         std::cout<<"this is the current value of i "<<i<<"\n"; 
+#endif
         variable[i]= T1;
         
     } 
     for (int j = (mshptr->nb_point_)/2 ; j< mshptr->nb_point_; j++){
+
+#ifdef DEBUG 
         std::cout<<"this is the current value of i "<<j<<"\n"; 
+#endif
 
         variable[j]= T2;
     } 
@@ -109,20 +114,25 @@ void Equation::compute_initial_condition_lambda(Variable &variable , IMesh *mshp
     // mshptr->x_i
 
     
-
+#ifdef DEBUG
     std::cout<<"Initial condition set up \n"; 
-
+#endif 
 
     // for (int i =0 ; i< (mshtpr->size())/2; i++){
     for (int i =0 ; i< mshptr->nb_point_; i++){
         // std::cout<<"this is the current value of i "<<i<<"\n"; 
         double xi = mshptr->x_i(i) ;
         variable[i]= initial_condition(xi);/*we use the lambda function to apply a x wize treatment to the domain*/
+#ifdef DEBUG 
         std::cout<<"for i= "<<i <<" x_i = "<<xi<< " Ti = "<< variable[i]<<"\n"; 
-        
+#else       
+#endif
+
     }
 
+#ifdef DEBUG 
     std::cout<<"End of initial condition set up \n\n"; 
+#endif
 
     // for (int j = (mshptr->nb_point_)/2 ; j< mshptr->nb_point_; j++){/*in order to apply both function we apply */
     //     std::cout<<"this is the current value of i "<<j<<"\n"; 

@@ -25,6 +25,7 @@ public :
     double max_element() const; 
 
     void print(std::string name ); 
+    void printvtk(std::string name );
 
 
 } ;

@@ -27,6 +27,8 @@ add_executable(SimulatorProject src/main.cpp
             )
 
 
+            
+
 
 # add_executable(SimulatorProject
 #     src/main.cpp
@@ -52,7 +54,31 @@ add_executable(test_Problem tests/test_Problem.cpp
                 src/UniformMesh.cpp src/Variable.cpp
                 src/Jacobi.cpp 
                 src/GaussSeidel.cpp )
-add_executable(test_Equation tests/test_Equation.cpp src/Equation.cpp src/UniformMesh.cpp src/Variable.cpp)
+
+                # Add a debug flag based on the build type
+#will build test_Problem with the print else will not show the print output .
+
+#To get the debug mode must be called with :
+#cmake -DCMAKE_BUILD_TYPE=Debug ..
+
+# go to buildrelease folder and run 
+#cmake -D CMAKE_BUILD_TYPE=Release ..
+
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+target_compile_definitions(test_Problem PRIVATE DEBUG)
+endif()
+
+
+
+
+
+add_executable(test_Equation tests/test_Equation.cpp 
+                src/Equation.cpp
+                src/UniformMesh.cpp
+                src/Variable.cpp
+                src/Jacobi.cpp 
+                src/GaussSeidel.cpp)
 
 
 # Add tests to CTest

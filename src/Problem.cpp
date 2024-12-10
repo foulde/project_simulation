@@ -27,9 +27,10 @@ void Problem::solve(int nb_iter ) const{
     
     Variable u_k(mesh_ptr_); 
     Variable u_kp1(mesh_ptr_); 
-        
+#ifdef DEBUG 
     std::cout<<"--- Initial condition computation ---\n";
-    
+#endif
+
     double T1 = 30; 
     double T2 = 15; 
 
@@ -64,7 +65,9 @@ void Problem::solve(int nb_iter ) const{
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
         equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
         if (has_converged(u_k, u_kp1)){
+#ifdef DEBUG 
             std::cout<<"we have converged at the iteration "<<k <<"\n"; 
+#endif
             break;
         }
         u_k = u_kp1;
@@ -94,9 +97,9 @@ void Problem::solve(int nb_iter , std::string method) const{
     // Variable u
     
     // std::vector<double> solution  ; 
-    
+#ifdef DEBUG 
     std::cout<<"--- Initial condition computation ---\n";
-
+#endif 
     
     double T1 = 30; 
     double T2 = 15; 
@@ -134,9 +137,10 @@ void Problem::solve(int nb_iter , std::string method) const{
     equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
     /*we also intialize u_kp1 for method like GaussSeidel  */
     equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
-
+    
+#ifdef DEBUG 
     u_kp1.print("initial");
-
+#endif
 
     /*We compute the exact solutions */
     equation_.compute_exact_solution(u_ref,mesh_ptr_  );
@@ -158,7 +162,9 @@ void Problem::solve(int nb_iter , std::string method) const{
         
 
         if (has_converged(u_k, u_kp1)){
+#ifdef DEBUG 
             std::cout<<"we have converged at the iteration "<<k <<"\n"; 
+#endif          
             break;
 
         }
@@ -170,13 +176,14 @@ void Problem::solve(int nb_iter , std::string method) const{
 
     }
 
-
     /*we now write the data to separate files */
     u_kp1.print("ukp1"); 
     u_ref.print("u_ref"); 
 
+    u_kp1.printvtk("ukp1_paraview"); 
+    u_ref.printvtk("u_ref_paraview"); 
 
-
+    
 
 }
 
@@ -188,23 +195,23 @@ bool  Problem::has_converged( const Variable &u_k ,const Variable &u_kp1 )const{
     for (int i =1 ; i<(u_k.mesh_ptr_->x_size())-1 ; i++){
 
         double diff = std::abs(u_k[i] - u_kp1[i]);
+#ifdef DEBUG 
         std::cout<<" the  u_k[i] found is "<<  u_k[i] << "\n";
         std::cout<<" the  u_kp1 found is "<<  u_kp1[i] << "\n";
         std::cout<<" the  diff found is "<<  diff << "\n";
+#endif
 
         if (diff>maximum_diff){maximum_diff =diff; } 
 
     }
+
+#ifdef DEBUG 
     std::cout<<" the maximum diff found in this iteration is "<<  maximum_diff << "\n";
+#endif
+
     return maximum_diff<EPSILON; /*return false if maximum diff superior */
 }
 
 
 
-// int main(){
-//     // UniformMesh
-//     UniformMesh stmesh; 
 
-    
-//     return 0; 
-// }

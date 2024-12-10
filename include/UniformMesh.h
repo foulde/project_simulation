@@ -49,6 +49,7 @@ struct UniformMesh : public IMesh{
     void print(){std::cout<< "the element of the class are : "<< "\n-x_min= "<<x_min_
                                                               << "\n-x_max= "<<x_max_
                                                               << "\n-nb_point= "<<nb_point_
+                                                              << "\n-m_dx_= "<<m_dx_
                                                               <<"\n"; 
 
     }
