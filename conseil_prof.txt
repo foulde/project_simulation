@@ -4,3 +4,9 @@ Problem.h      Problem.cpp
 Variable.h     Variable.cpp
 IMesh.h        IMesh.cpp
 UniformMesh.h  UniformMesh.cpp
+
+
+
+pour la notation le prof va faire make test au départ 
+
+ajouter des test pour Imesh et UniformMesh 
