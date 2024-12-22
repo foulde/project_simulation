@@ -16,19 +16,11 @@
 struct Problem{
 
 
-// public: 
 
-// Problem(Equation eq , IMesh* mshptr /*we define a mesh pointer that will be called by the compute */ );
-// Problem(const Equation& eq, IMesh* mshptr); // Constructor
 public:
 Problem(const Equation& eq, IMesh* mesh_ptr) : equation_(eq), mesh_ptr_(mesh_ptr) {}
 
-// ~Problem();
-// ~Problem() { delete mesh_ptr_; }
 
-
-    // std::vector<double> solve(Equation eq); 
-    // std::vector<double> solve( int nb_iter) const; 
     void solve( int nb_iter) const; 
     void solve(int nb_iter , std::string method) const; 
     void solve_parallel(int nb_iter , std::string method) const; 

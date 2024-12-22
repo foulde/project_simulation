@@ -65,15 +65,6 @@ int main(){
 
     a.print();
 
-
-
-
-
-
-
-
-    
-
-
     return 0; 
+
 }
