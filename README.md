@@ -30,8 +30,8 @@ using iterative method like Jacobi and GaussSeidel.
     ./test_Problem
     
 
-# ## Project Structure
+# Vizualisation of the solution 
+to vizualise the solution you can use ParaView ,running ./test_Problem or ctest 
+will generate vtk file that can later be vizualised in ParaView
 
- - **`Problem.h` / `Problem.cpp`**: Implementation of the problem solver.
- - **`test_Problem.cpp`**: Unit tests for the problem solver.
- - **`CMakeLists.txt`**: CMake configuration file for building the project.
+

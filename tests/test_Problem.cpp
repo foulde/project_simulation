@@ -12,28 +12,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-int main(){
+void test_Problem(double x_min ,double  x_max , int nbiteration , double dx ){
 
 
 
   
     Equation e ;
-    double x_min =0 ; 
-    double x_max =1 ; 
-    // int nb_points = 50000;
-    int nbiteration = 100;
+    // double x_min =0 ; 
+    // double x_max =1 ; 
+    // // int nb_points = 50000;
+    // int nbiteration = 100;
  
 
-    double dx =1e-6; 
+    // double dx =1e-6; 
 
     // UniformMesh u(0 ,5 , 10); /*calling */
     // UniformMesh u(x_min ,x_max , nb_points); /*calling */
@@ -81,6 +72,30 @@ int main(){
 
     a.print();
 
-    return 0; 
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+int main(){
+
+
+test_Problem(0 , 1 ,100 , 1e-6 ); 
+
+/*convergence test*/
+std::cout<<"this is test where things do converge"<< std::endl; 
+test_Problem(0 , 1 ,100000 , 1e-2 ); 
+
+
 
 }
