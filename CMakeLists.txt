@@ -10,6 +10,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add executable target and source files
 # add_executable(SimulatorProject src/main.cpp src/Problem.cpp src/Equation.cpp)
+
+# the main.cpp does nothing every test is done in test_problem
 add_executable(SimulatorProject src/main.cpp
             src/Problem.cpp 
             src/Equation.cpp
@@ -73,12 +75,30 @@ endif()
 
 
 
+
+
+
+
 add_executable(test_Equation tests/test_Equation.cpp 
                 src/Equation.cpp
                 src/UniformMesh.cpp
                 src/Variable.cpp
                 src/Jacobi.cpp 
                 src/GaussSeidel.cpp)
+
+
+
+
+
+# Link threading library
+find_package(Threads REQUIRED)
+find_package(TBB REQUIRED)
+
+
+target_link_libraries(SimulatorProject PRIVATE Threads::Threads TBB::tbb)
+target_link_libraries(test_Problem PRIVATE Threads::Threads TBB::tbb)
+target_link_libraries(test_Equation PRIVATE Threads::Threads TBB::tbb)
+
 
 
 # Add tests to CTest

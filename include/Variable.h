@@ -3,8 +3,11 @@
 
 #include<iostream>
 #include<vector>
-#include"IMesh.h"
+#include <algorithm>
+#include <execution>
 #include <string>
+
+#include"IMesh.h"
 
 
 
@@ -20,6 +23,14 @@ public :
 
     double& operator[](int); 
     const double& operator[](int) const;
+
+
+    /* STL compatibility with for each */
+    auto begin() { return u.begin(); }
+    auto end() { return u.end(); }
+    auto begin() const { return u.begin(); }
+    auto end() const { return u.end(); }
+
     
 
     double max_element() const; 

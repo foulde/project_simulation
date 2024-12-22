@@ -1,12 +1,17 @@
+#ifndef EQUATION_H
+#define EQUATION_H
+
+
 #include<stdlib.h>
 #include<vector>
 #include<iostream>
 #include <functional> // Include this for std::function
+#include <algorithm>
+#include <execution>
+
 
 #include"IMesh.h"
 #include"Variable.h"
-#ifndef EQUATION_H
-#define EQUATION_H
 
 
 // define function for equation
@@ -99,13 +104,15 @@ public:
 
 
     template<class Method>
-    void compute_for_solver(IMesh *mshptr , Variable &u_k ,Variable &u_kp1)const{
+    void compute_for_solver(IMesh *mshptr , Variable &u_k ,Variable &u_kp1,
+    void (*compute_iteration)(IMesh*, Variable&, Variable&))const{/*Because we want to change between static methods*/
     int n_i = mshptr->nb_point_;     
     #if DEBUG 
     std::cout <<"-- at n_i = "<< n_i <<"\n\n";
     #endif
-    Method::compute_iteration(mshptr , u_k ,u_kp1);
-}
+    // Method::compute_iteration(mshptr , u_k ,u_kp1);
+    compute_iteration(mshptr , u_k ,u_kp1);
+    }
 
 
 }; 

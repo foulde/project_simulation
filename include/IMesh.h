@@ -3,6 +3,9 @@
 #include<stdlib.h>
 #include<vector>
 #include<iostream>
+#include <execution>
+#include <algorithm>
+
 
 
 struct IMesh{

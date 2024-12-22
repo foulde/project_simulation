@@ -1,10 +1,15 @@
+#ifndef UNIFORM_MESH_H
+#define UNIFORM_MESH_H
+
 #include<stdlib.h>
 #include<vector>
 #include<iostream>
 #include <cmath>
+#include <algorithm>
+#include <execution>
+
+
 #include"IMesh.h"
-#ifndef UNIFORM_MESH_H
-#define UNIFORM_MESH_H
 
 
 
