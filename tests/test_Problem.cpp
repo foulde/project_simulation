@@ -3,6 +3,7 @@
 #include"../include/Problem.h"
 #include"../include/Equation.h"
 #include "../include/UniformMesh.h"
+#include "../include/Timer.h"
 
 
 int main(){
@@ -47,9 +48,13 @@ int main(){
     // std::vector<double> toto = p1.solve(10); 
     // p1.solve(1000); 
     // p1.solve(1000 , "Jacobi"); 
-    // p1.solve(1000 , "GaussSeidel"); 
+    // p1.solve(1000 , "GaussSeidel");
+    Timer a ; 
+    a.tstart() ;
     p1.solve(100 , "GaussSeidel"); 
+    a.tstop();
 
+    a.print();
 
 
     
