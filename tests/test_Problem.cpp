@@ -1,12 +1,28 @@
 #include<iostream>
 #include<vector>
+
+
 #include"../include/Problem.h"
 #include"../include/Equation.h"
 #include "../include/UniformMesh.h"
 #include "../include/Timer.h"
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main(){
+
 
 
   

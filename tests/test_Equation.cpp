@@ -63,7 +63,7 @@ void test_compute_exact_solution() {
 
     assert(u_ref[0] == 30);        // T1 at start
     assert(u_ref[4] == 15);        // T2 at end
-    for (int i = 1; i < 4; i++) {  // Linear interpolation check
+    for (int i = 1; i < 4; i++) {  
         double xi = mesh.x_i(i);
         double expected_value = ((15 - 30) / 10.0) * xi + 30;
         assert(u_ref[i] == expected_value);
