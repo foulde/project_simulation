@@ -12,31 +12,7 @@
 
 
 
-// void compute()
 
-// Equation::Equation() {
-//     // Constructor implementation (even if empty)
-// }
-
-// std::vector<double> Equation::compute(IMesh * mshptr) const{
-//     int n_i = mshptr->nb_point_; 
-//     std::vector<double> u(n_i, 0);
-//     double x_min= mshptr->x_min_;
-//     double x_max= mshptr->x_max_;
-//     double dx   = abs(x_max-x_min)/n_i;  
-    
-//     std::cout <<"-- at n_i = "<< n_i <<"\n\n";
-
-//     double current_x_i = x_min  ;  /*to avoid error accumulation */
-//     for (int i=0 ; i <=n_i ; i++){
-//         current_x_i = x_min +i*dx;   /*to avoid error accumulation */
-
-//         std::cout <<"i = "<< i <<"\n";
-//         std::cout <<"-- at x_i = "<< current_x_i <<"\n";
-
-//     }
-//     return u ; 
-// }
 
 
 
@@ -105,46 +81,48 @@ void Equation::compute_initial_condition(Variable &variable , IMesh *mshptr)cons
 
 void Equation::compute_initial_condition_lambda(Variable &variable , IMesh *mshptr 
                                                 , std::function<double(double)> initial_condition)const{
-    // const double T1 = 30; 
-    // const double T2 = 15;
 
-    /*example of lambda function */
-    // auto lambda = []() {return 2;};
-
-    // mshptr->x_i
 
     
 #ifdef DEBUG
     std::cout<<"Initial condition set up \n"; 
 #endif 
 
-    // for (int i =0 ; i< (mshtpr->size())/2; i++){
-    for (int i =0 ; i< mshptr->nb_point_; i++){
-        // std::cout<<"this is the current value of i "<<i<<"\n"; 
-        double xi = mshptr->x_i(i) ;
-        variable[i]= initial_condition(xi);/*we use the lambda function to apply a x wize treatment to the domain*/
-#ifdef DEBUG 
-        std::cout<<"for i= "<<i <<" x_i = "<<xi<< " Ti = "<< variable[i]<<"\n"; 
-#else       
-#endif
+//     // for (int i =0 ; i< (mshtpr->size())/2; i++){
+//     for (int i =0 ; i< mshptr->nb_point_; i++){
+//         // std::cout<<"this is the current value of i "<<i<<"\n"; 
+//         double xi = mshptr->x_i(i) ;
+//         variable[i]= initial_condition(xi);/*we use the lambda function to apply a x wize treatment to the domain*/
+// #ifdef DEBUG 
+//         std::cout<<"for i= "<<i <<" x_i = "<<xi<< " Ti = "<< variable[i]<<"\n"; 
+// #else       
+// #endif
 
-    }
+//     }
+
+
+    std::for_each(std::execution::par ,variable.begin(), variable.end(), [&](auto& value) {
+    int index = &value - &variable[0];/*we take advantage of contiguous nature 
+    of value in our datastructure and pointer arithmetics to deduce the index
+    of our element */
+    double xi = mshptr->x_i(index);           // Get the position from the mesh
+    value = initial_condition(xi);            // Apply the lambda
+    });
+
+
+
+
+
+
+
+
+
 
 #ifdef DEBUG 
     std::cout<<"End of initial condition set up \n\n"; 
 #endif
 
-    // for (int j = (mshptr->nb_point_)/2 ; j< mshptr->nb_point_; j++){/*in order to apply both function we apply */
-    //     std::cout<<"this is the current value of i "<<j<<"\n"; 
-    //     float xj = mshptr->x_i(j) ;
-    //     variable[j]= initial_condition(xj);/*wse use the lambda function to apply a x wize treatment to the domain*/
-        
-    // }  
-    // for (int j = (mshptr->nb_point_)/2 ; j< mshptr->nb_point_; j++){
-    //     std::cout<<"this is the current value of i "<<j<<"\n"; 
 
-    //     variable[j]= T2;
-    // } 
 
 }
 
@@ -171,13 +149,27 @@ void Equation::compute_exact_solution(Variable &u_ref ,IMesh * mshptr  )const{
     double l=std::abs(mshptr->x_max_ - mshptr->x_min_); 
 
 
-    for(int i =1; i<mshptr->nb_point_-1; i++){
+    // for(int i =1; i<mshptr->nb_point_-1; i++){
         
-        double xi = mshptr->x_i(i) ;
+    //     double xi = mshptr->x_i(i) ;
 
-        u_ref[i] =((T2-T1)/l)*(xi) +T1; 
+    //     u_ref[i] =((T2-T1)/l)*(xi) +T1; 
         
-    }
+    // }
+
+
+    std::for_each(std::execution::par ,u_ref.begin(), u_ref.end(), [&](auto& value) {
+    int index = &value - &u_ref[0];/*we take advantage of contiguous nature 
+    of value in our datastructure and pointer arithmetics to deduce the index
+    of our element */
+    double xi = mshptr->x_i(index);           // Get the position from the mesh
+    
+
+    u_ref[index] =((T2-T1)/l)*(xi) +T1; 
+    
+    });
+
+
 }
 
 

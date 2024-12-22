@@ -13,17 +13,11 @@
 #define EPSILON 1e-5
 
 
-//contient un membre de type equation ---> equation est peut être une classe 
-
-
-// std::vector<double> Problem::solve(const Equation& eq , int nb_iter) const{
-// std::vector<double> Problem::solve(int nb_iter) const{
 
 
 
-
-
-void Problem::solve(int nb_iter ) const{
+/*Default use Jacobi non parrallel*/
+void Problem::solve(int nb_iter ) const{ 
     
     Variable u_k(mesh_ptr_); 
     Variable u_kp1(mesh_ptr_); 
@@ -43,27 +37,21 @@ void Problem::solve(int nb_iter ) const{
         if (x<=(mesh_ptr_->x_max_ +mesh_ptr_->x_min_)/2)return (T1);
         else return T2; };
 
-
-    // std::function<double(double)>  lambda = [T1,T2](double x) {return (T1+T2/2);};
-    // std::funct   ion<double(double)> = [](double T1 ,double T2  ) {return (T1 +T2)/2;};
-    ///////////////////////////////////
-
 /*UNIFORM CHOICE */
-    // equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda_UNIFORM );
-
-    
+    // equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda_UNIFORM );    
 /*2 PLATE CHOICE */
     equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
     /*we also intialize u_kp1 for method like GaussSeidel  */
     equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
-
-
     for( int k =1 ; k <=nb_iter  ; k++){
         // std::cout<<"--- Iterative methode iteration : "<<k<<" ---\n";
         // std::cout<<"--- Boundary condition computation ---\n";
         equation_.compute_boundary_conditions(u_k,mesh_ptr_);
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
-        equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
+        // equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
+
+        equation_.compute_for_solver<Jacobi>(mesh_ptr_, u_k, u_kp1, Jacobi::compute_iteration);
+
         if (has_converged(u_k, u_kp1)){
 #ifdef DEBUG 
             std::cout<<"we have converged at the iteration "<<k <<"\n"; 
@@ -140,7 +128,7 @@ void Problem::solve(int nb_iter , std::string method) const{
     equation_.compute_exact_solution(u_ref,mesh_ptr_  );
 
     
-
+    /*compute boundary condition */
     equation_.compute_boundary_conditions(u_k,mesh_ptr_);
 
 
@@ -151,8 +139,12 @@ void Problem::solve(int nb_iter , std::string method) const{
         // equation_.compute_boundary_conditions(u_k,mesh_ptr_);
         
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
-        if (method == "Jacobi") {equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);}
-        else if (method =="GaussSeidel"){equation_.compute_for_solver<GaussSeidel>(mesh_ptr_,u_k, u_kp1);}
+        if (method == "Jacobi") {equation_.compute_for_solver<Jacobi>(mesh_ptr_, u_k, u_kp1, Jacobi::compute_iteration);}
+        
+        else if (method =="GaussSeidel"){
+        equation_.compute_for_solver<GaussSeidel>(mesh_ptr_, u_k, u_kp1, GaussSeidel::compute_iteration);
+        }
+        
         else{std::cout<<"you must use Jacobi or GaussSeidel \n";  break;}
         
 
@@ -181,6 +173,145 @@ void Problem::solve(int nb_iter , std::string method) const{
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+void Problem::solve_parallel(int nb_iter , std::string method) const{
+
+    Variable u_k(mesh_ptr_); 
+    Variable u_kp1(mesh_ptr_); 
+    Variable u_ref(mesh_ptr_); 
+    
+#ifdef DEBUG 
+    std::cout<<"--- Initial condition computation ---\n";
+#endif 
+    
+    double T1 = 30; 
+    double T2 = 15; 
+
+    
+
+
+
+    
+
+/*FUNCTION FOR UNIFORM DISTRIBUTION*/
+    std::function<double(double)>  lambda_UNIFORM = [T1,T2](double x) {return (T1+T2/2);}; 
+
+/*FUNCTION FOR 2 PLATE INITIAL CONDITION SUPPOSING THE DOMAIN START AT 0*/
+    // std::function<double(double)>  lambda = [this,T1,T2](double x) {
+    //     if (x<=(mesh_ptr_->x_max_)/2)return (T1);
+    //     else return T2; };
+
+/*FUNCTION FOR 2 PLATE INITIAL CONDITION */
+
+    std::function<double(double)>  lambda = [this,T1,T2](double x) {
+        if (x<=(mesh_ptr_->x_max_ +mesh_ptr_->x_min_)/2)return (T1);
+        else return T2; };
+
+
+    // std::function<double(double)>  lambda = [T1,T2](double x) {return (T1+T2/2);};
+    // std::funct   ion<double(double)> = [](double T1 ,double T2  ) {return (T1 +T2)/2;};
+    ///////////////////////////////////
+
+/*UNIFORM CHOICE */
+    // equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda_UNIFORM );
+/*2 PLATE CHOICE */
+    equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
+    /*we also intialize u_kp1 for method like GaussSeidel  */
+    equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
+    
+#ifdef DEBUG 
+    u_kp1.print("initial");
+#endif
+
+    /*We compute the exact solutions */
+    equation_.compute_exact_solution(u_ref,mesh_ptr_  );
+
+    
+    /*compute boundary condition */
+    equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+
+
+    for( int k =1 ; k <=nb_iter  ; k++){
+        // std::cout<<"--- Iterative methode iteration : "<<k<<" ---\n";
+        // std::cout<<"--- Boundary condition computation ---\n";
+        
+        // equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+        
+        // equation_.compute(mesh_ptr_,u_k, u_kp1);
+        if (method == "Jacobi") {equation_.compute_for_solver<Jacobi>(mesh_ptr_, u_k, u_kp1, Jacobi::compute_iteration_parrallel);}
+        
+        else if (method =="GaussSeidel"){
+        equation_.compute_for_solver<GaussSeidel>(mesh_ptr_, u_k, u_kp1, GaussSeidel::compute_iteration);
+        }
+        else{std::cout<<"you must use Jacobi or GaussSeidel \n";  break;}
+        
+
+        if (has_converged(u_k, u_kp1)){
+// #ifdef DEBUG 
+            std::cout<<"we have converged at the iteration "<<k <<"\n"; 
+// #endif          
+            break;
+
+        }
+        u_k = u_kp1;
+
+        // solution  = eq.compute(mesh_ptr); 
+        // solution  = equation_.compute(mesh_ptr_); 
+        // compute 
+
+    }
+
+    /*we now write the data to separate files */
+    u_kp1.print("ukp1"); 
+    u_ref.print("u_ref"); 
+
+    u_kp1.printvtk("ukp1_paraview"); 
+    u_ref.printvtk("u_ref_paraview"); 
+
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 bool  Problem::has_converged( const Variable &u_k ,const Variable &u_kp1 )const{
