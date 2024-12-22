@@ -84,28 +84,22 @@ void Problem::solve(int nb_iter ) const{
 
 
 
-void Problem::solve(int nb_iter , std::string method) const{
-    
-    // nbiter = mesh_ptr_.nb
 
-    // int n_i = mshptr->nb_point; 
-    // std::vector<double> solution( mesh_ptr->nb_point, 0);
-    // std::vector<double> solution( mesh_ptr_->nb_point_, 0);
+
+
+void Problem::solve(int nb_iter , std::string method) const{
+
     Variable u_k(mesh_ptr_); 
     Variable u_kp1(mesh_ptr_); 
     Variable u_ref(mesh_ptr_); 
-    // Variable u
     
-    // std::vector<double> solution  ; 
 #ifdef DEBUG 
     std::cout<<"--- Initial condition computation ---\n";
 #endif 
     
     double T1 = 30; 
     double T2 = 15; 
-    // equation_.compute_initial_condition(u_k,mesh_ptr_);
 
-    /*we define get the size of the bar*/
     
 
 
@@ -147,13 +141,14 @@ void Problem::solve(int nb_iter , std::string method) const{
 
     
 
+    equation_.compute_boundary_conditions(u_k,mesh_ptr_);
 
 
     for( int k =1 ; k <=nb_iter  ; k++){
         // std::cout<<"--- Iterative methode iteration : "<<k<<" ---\n";
         // std::cout<<"--- Boundary condition computation ---\n";
         
-        equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+        // equation_.compute_boundary_conditions(u_k,mesh_ptr_);
         
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
         if (method == "Jacobi") {equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);}
@@ -162,9 +157,9 @@ void Problem::solve(int nb_iter , std::string method) const{
         
 
         if (has_converged(u_k, u_kp1)){
-#ifdef DEBUG 
+// #ifdef DEBUG 
             std::cout<<"we have converged at the iteration "<<k <<"\n"; 
-#endif          
+// #endif          
             break;
 
         }
