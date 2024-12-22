@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <future>
 
 #include "../include/Problem.h"
 #include "../include/Equation.h"
@@ -21,6 +22,9 @@ void Problem::solve(int nb_iter ) const{
     
     Variable u_k(mesh_ptr_); 
     Variable u_kp1(mesh_ptr_); 
+    Variable u_ref(mesh_ptr_); 
+
+
 #ifdef DEBUG 
     std::cout<<"--- Initial condition computation ---\n";
 #endif
@@ -43,10 +47,30 @@ void Problem::solve(int nb_iter ) const{
     equation_.compute_initial_condition_lambda(u_k,mesh_ptr_ , lambda );
     /*we also intialize u_kp1 for method like GaussSeidel  */
     equation_.compute_initial_condition_lambda(u_kp1,mesh_ptr_ , lambda );
+
+
+
+
+
+
+
+    /*We compute the exact solutions */
+    auto exact_solution_task = std::async(std::launch::async, [&]() {
+        equation_.compute_exact_solution(u_ref, mesh_ptr_);
+    });
+
+    /*compute boundary condition */
+    auto boundary_conditions_task = std::async(std::launch::async, [&]() {
+        equation_.compute_boundary_conditions(u_k, mesh_ptr_);
+    });
+
+    exact_solution_task.wait();
+    boundary_conditions_task.wait();
+
+
     for( int k =1 ; k <=nb_iter  ; k++){
         // std::cout<<"--- Iterative methode iteration : "<<k<<" ---\n";
         // std::cout<<"--- Boundary condition computation ---\n";
-        equation_.compute_boundary_conditions(u_k,mesh_ptr_);
         // equation_.compute(mesh_ptr_,u_k, u_kp1);
         // equation_.compute_for_solver<Jacobi>(mesh_ptr_,u_k, u_kp1);
 
@@ -124,12 +148,27 @@ void Problem::solve(int nb_iter , std::string method) const{
     u_kp1.print("initial");
 #endif
 
-    /*We compute the exact solutions */
-    equation_.compute_exact_solution(u_ref,mesh_ptr_  );
 
-    
+
+
+    /*We compute the exact solutions */
+    auto exact_solution_task = std::async(std::launch::async, [&]() {
+        equation_.compute_exact_solution(u_ref, mesh_ptr_);
+    });
+
     /*compute boundary condition */
-    equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+    auto boundary_conditions_task = std::async(std::launch::async, [&]() {
+        equation_.compute_boundary_conditions(u_k, mesh_ptr_);
+    });
+
+    exact_solution_task.wait();
+    boundary_conditions_task.wait();
+
+
+
+
+
+
 
 
     for( int k =1 ; k <=nb_iter  ; k++){
@@ -233,12 +272,25 @@ void Problem::solve_parallel(int nb_iter , std::string method) const{
     u_kp1.print("initial");
 #endif
 
-    /*We compute the exact solutions */
-    equation_.compute_exact_solution(u_ref,mesh_ptr_  );
 
-    
+
+
+    /*We compute the exact solutions */
+    auto exact_solution_task = std::async(std::launch::async, [&]() {
+        equation_.compute_exact_solution(u_ref, mesh_ptr_);
+    });
+
     /*compute boundary condition */
-    equation_.compute_boundary_conditions(u_k,mesh_ptr_);
+    auto boundary_conditions_task = std::async(std::launch::async, [&]() {
+        equation_.compute_boundary_conditions(u_k, mesh_ptr_);
+    });
+
+    exact_solution_task.wait();
+    boundary_conditions_task.wait();
+
+
+
+
 
 
     for( int k =1 ; k <=nb_iter  ; k++){

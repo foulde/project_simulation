@@ -1,0 +1,93 @@
+Start testing: Dec 22 16:54 CET
+----------------------------------------------------------
+1/2 Testing: TestProblem
+1/2 Test: TestProblem
+Command: "/home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/buildrelease/test_Problem"
+Directory: /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/buildrelease
+"TestProblem" start time: Dec 22 16:54 CET
+Output:
+----------------------------------------------------------
+the element of the class are : 
+-x_min= 0
+-x_max= 1
+-nb_point= 50000
+-m_dx_= 2.00004e-05
+tu es dans le main
+
+
+this is parrallel
+
+this is ukp1
+Data was written to ukp1.data
+this is u_ref
+Data was written to u_ref.data
+this is ukp1_paraview
+Data was written to ukp1_paraview.vtk
+this is u_ref_paraview
+Data was written to u_ref_paraview.vtk
+finished computation at Sun Dec 22 16:54:21 2024
+elapsed time: 0.100719s
+
+
+this is sequential Jacobi 
+
+this is ukp1
+Data was written to ukp1.data
+this is u_ref
+Data was written to u_ref.data
+this is ukp1_paraview
+Data was written to ukp1_paraview.vtk
+this is u_ref_paraview
+Data was written to u_ref_paraview.vtk
+finished computation at Sun Dec 22 16:54:21 2024
+elapsed time: 0.117223s
+
+
+this is sequential Gaussiedel
+
+this is ukp1
+Data was written to ukp1.data
+this is u_ref
+Data was written to u_ref.data
+this is ukp1_paraview
+Data was written to ukp1_paraview.vtk
+this is u_ref_paraview
+Data was written to u_ref_paraview.vtk
+finished computation at Sun Dec 22 16:54:22 2024
+elapsed time: 0.119611s
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"TestProblem" end time: Dec 22 16:54 CET
+"TestProblem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: TestEquation
+2/2 Test: TestEquation
+Command: "/home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/buildrelease/test_Equation"
+Directory: /home/hugo/calcul_haute_performance/cpp_oriente_objet/TD/TD2/project_simulation/buildrelease
+"TestEquation" start time: Dec 22 16:54 CET
+Output:
+----------------------------------------------------------
+the element of the class are : 
+-x_min= 0
+-x_max= 5
+-nb_point= 10
+-m_dx_= 0.555556
+tu es dans le main
+test_compute_boundary_conditions passed!
+test_compute_initial_condition passed!
+test_compute_initial_condition_lambda passed!
+test_compute_exact_solution passed!
+test_compute passed!
+All tests passed!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TestEquation" end time: Dec 22 16:54 CET
+"TestEquation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 22 16:54 CET
