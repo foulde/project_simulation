@@ -1,3 +1,0 @@
-TestProblem 6 1.15449
-TestEquation 6 0.000337519
----
