@@ -1,3 +1,0 @@
-TestProblem 4 0.0313203
-TestEquation 4 0.000593873
----
